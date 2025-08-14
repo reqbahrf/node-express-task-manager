@@ -1,0 +1,19 @@
+{
+  "name": "express-task-manager",
+  "version": "1.0.0",
+  "description": "task manager practice project for node and express JS",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Reanz Arthur",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
