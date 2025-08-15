@@ -3,8 +3,8 @@ const connectDB = require('./db/connect');
 const express = require('express');
 const app = express();
 const tasks = require('./routes/tasks');
-
 app.use(express.json());
+app.use(express.static('./public'));
 const port = 3000;
 
 app.use('/api/v1/tasks', tasks);

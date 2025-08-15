@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Task Manager</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-white">
+    <div class="min-h-screen flex flex-col items-center justify-center gap-8">
+      <form
+        class="min-w-full md:min-w-[40rem] bg-white p-8 shadow-md min-h-64 max-h-[400px] rounded-lg"
+        id="task-form"
+      >
+        <h1 class="text-2xl font-bold mb-4">Task Manager</h1>
+        <div class="mb-3">
+          <input
+            type="text"
+            name="name"
+            class="w-full outline-1 outline-blue-600 p-3 rounded-sm focus:outline-none focus:outline-blue-600"
+            placeholder="e.g. walk the dog"
+          />
+        </div>
+        <div class="text-end">
+          <button
+            type="submit"
+            class="outline-1 bg-blue-600 text-white rounded-sm p-3 hover:outline-blue-950"
+          >
+            Add Task
+          </button>
+        </div>
+        <section class="submission-status">
+          <div class="hidden loading-text">Loading...</div>
+          <div class="hidden message-container"></div>
+        </section>
+      </form>
+      <div
+        id="tasks"
+        class="min-w-full md:min-w-[40rem] overflow-y-auto max-h-[400px]"
+      ></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="browser.js"></script>
+  </body>
+</html>
