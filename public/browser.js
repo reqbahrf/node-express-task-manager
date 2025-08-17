@@ -17,10 +17,11 @@ const showTasks = async () => {
     const allTasks = tasks
       .map((task) => {
         const { completed, _id, name } = task;
-        return /*html*/ `<div class="task my-3 bg-gray-100 shadow-sm p-3 rounded-sm">
+        return /*html*/ `<div class="task my-3 bg-gray-100 shadow-sm p-3 rounded-sm hover:bg-white">
       <h3 class="text-xl ${completed && 'line-through'}">${
-          completed &&
-          '<span><i class="fas fa-check text-green-500"></i>&nbsp;</span>'
+          completed
+            ? '<span><i class="fas fa-check text-green-500"></i>&nbsp;</span>'
+            : ''
         }${name}</h3>
       <div class="task-btns text-end">
         <a href="task.html?id=${_id}" class="edit-link">
@@ -63,5 +64,30 @@ taskForm.addEventListener('submit', async (e) => {
       feedBackMessage.classList.add('hidden');
       feedBackMessage.textContent = '';
     }, 3000);
+  }
+});
+
+tasksContainer.addEventListener('click', async (e) => {
+  const deleteBtn = e.target.closest('.delete-btn');
+
+  if (deleteBtn) {
+    e.preventDefault();
+    const taskId = deleteBtn.dataset.id;
+
+    try {
+      deleteBtn.innerHTML = 'Deleting...';
+      deleteBtn.disabled = true;
+      const response = await axios.delete(`/api/v1/tasks/${taskId}`);
+      if (response.status === 200) {
+        const taskElement = deleteBtn.closest('.task');
+        if (taskElement) {
+          taskElement.remove();
+        }
+      } else {
+        throw new Error('Failed to delete task');
+      }
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
   }
 });
